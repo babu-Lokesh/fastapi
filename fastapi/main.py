@@ -9,7 +9,7 @@ DB_URL = "sqlite:///./my_sample.db"
 
 engine = create_engine(DB_URL, connect_args={"check_same_thread": False})
 session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-Base.metadata.create_all(bind=engine) # CREATE TABLE customers (id INTEGER PRIMARY KEY, name TEXT, email TEXT UNIQUE, age INTEGER NOT NULL)
+Base.metadata.create_all(bind=engine)
 
 def get_db():
     db = session()
@@ -41,10 +41,7 @@ def customer(customer: CustomerCreate, db:sessionDep):
     db.commit()
     db.refresh(new_customer)
     return new_customer
-    # return {"message": "Customer added successfully", "customer": new_customer}
-# git branch -M main
-# git push -u origin main
-# update customer in my database
+  
 @app.put("/customer/{customer_id}")
 def customer(customer_id: int):
     pass

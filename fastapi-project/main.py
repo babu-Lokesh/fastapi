@@ -83,7 +83,7 @@ def get_customer(customer_id: int, db: SessionDep):
         return {"error": "Customer not found"}
     return customer
 
-@app.post("/customers",response_model=list[Customer])
+@app.get("/customers",response_model=list[Customer])
 def list_customer(db: Session = Depends(get_database)):
     customers = db.query(CustomerDB).all()
     return customers
